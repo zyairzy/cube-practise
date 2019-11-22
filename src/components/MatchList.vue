@@ -73,7 +73,7 @@ export default {
 
 <style lang="stylus">
 .match-list {
-  height: 418px;
+  height: 618px;
   background-color: #E2E5EA;
 }
 </style>
