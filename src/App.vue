@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <div class="header">
-      <div class="title">全部赛事</div>
+      <div class="title" @click="showPicker">
+        <span>全部赛事</span>
+        <i class="cubeic-select" :class="{down: toDown}"></i>
+      </div>
       <div class="navigator">
         <ul class="nav-list">
           <li
@@ -42,11 +45,25 @@ export default {
     return {
       currentPage: 1,
       tabList: ['已结束', '直播中', '我的关注'],
-      type: 'soccer'
+      type: 'soccer',
+      pickerList: [
+        { text: 'NBA', value: 'NBA' },
+        { text: 'DOTA', value: 'dota' },
+        { text: 'SOCCER', value: 'soccer' }
+      ]
     }
   },
   components: {
     MatchList
+  },
+  mounted () {
+    this.picker = this.$createPicker({
+      title: '赛事',
+      data: [this.pickerList],
+      onValueChange: (selValue) => {
+        this.type = selValue[0]
+      }
+    })
   },
   methods: {
     switchTab (index) {
@@ -54,6 +71,9 @@ export default {
     },
     slideChange (index) {
       this.currentPage = index
+    },
+    showPicker () {
+      this.picker.show()
     }
   }
 }

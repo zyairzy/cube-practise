@@ -49,13 +49,18 @@ export default {
           txt: '刷新成功'
         },
         pullUpLoad: {
-          threshold: 100,
+          threshold: 0,
           txt: {
             more: '加载成功',
             noMore: '没有更多的比赛啦'
           }
         }
       }
+    }
+  },
+  watch: {
+    type () {
+      this.matchList = matchData[this.type][this.status]
     }
   },
   methods: {
@@ -91,7 +96,7 @@ export default {
 
 <style lang="stylus">
 .match-list {
-  height: 618px;
+  height: 100%; // it affects scroll
   background-color: #FFFFFF;
 
   .match-item {
