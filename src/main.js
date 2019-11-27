@@ -48,9 +48,11 @@ import {
   Sticky,
   ScrollNav,
   ScrollNavBar,
-  RecycleList
+  RecycleList,
+  createAPI
 } from 'cube-ui'
 import App from './App'
+import SubscribeDialog from './components/subscribe-dialog/subscribe-dialog'
 
 Vue.use(Button)
 Vue.use(Loading)
@@ -91,11 +93,14 @@ Vue.use(ScrollNav)
 Vue.use(ScrollNavBar)
 Vue.use(RecycleList)
 
+createAPI(Vue, SubscribeDialog, ['click'], true)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   template: '<App/>',
-  components: { App }
+  components: {
+    App
+  }
 })

@@ -15,7 +15,7 @@
           </div>
           <div class="center-side">
             <p v-if="item.live" class="live" :class="{end : item.isEnd}">{{item.live}}</p>
-            <p v-if="item.order" class="order">{{item.order}}</p>
+            <p v-if="item.order" class="order" @click="subscribe">{{item.order}}</p>
             <p class="score">{{item.hostScore}} - {{item.guestScore}}</p>
             <p class="time">{{item.isEnd? "" : item.endTime}}</p>
           </div>
@@ -63,7 +63,13 @@ export default {
       this.matchList = matchData[this.type][this.status]
     }
   },
+  created () {
+    this.subscribeDialog = this.$createSubscribeDialog()
+  },
   methods: {
+    subscribe () {
+      this.subscribeDialog.show()
+    },
     onPullingDown () {
       setTimeout(() => {
         if (Math.random() > 0.5) {
