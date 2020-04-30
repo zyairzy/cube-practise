@@ -50,7 +50,8 @@ export default {
         { text: 'NBA', value: 'NBA' },
         { text: 'DOTA', value: 'dota' },
         { text: 'SOCCER', value: 'soccer' }
-      ]
+      ],
+      toDown: false
     }
   },
   components: {
@@ -62,6 +63,12 @@ export default {
       data: [this.pickerList],
       onValueChange: (selValue) => {
         this.type = selValue[0]
+      },
+      onSelect: () => {
+        this.toDown = false
+      },
+      onCancel: () => {
+        this.toDown = false
       }
     })
   },
@@ -73,6 +80,7 @@ export default {
       this.currentPage = index
     },
     showPicker () {
+      this.toDown = true
       this.picker.show()
     }
   }
@@ -96,6 +104,11 @@ html, body, #app {
       padding: 20px 0;
       font-size: 16px;
       color: white;
+
+      .down {
+        display: inline-block
+        transform: rotate(180deg)
+      }
     }
 
     .navigator {
